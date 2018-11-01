@@ -1,0 +1,8 @@
+.statebox {
+    height: 50px;
+
+border: solid 1px darkgrey;
+
+width: 50px;
+display: inline-block;
+}
