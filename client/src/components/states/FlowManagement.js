@@ -8,10 +8,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
+import { addState } from '../../actions/states'
 
 
 
-export default class FlowManagement extends PureComponent {
+class FlowManagement extends PureComponent {
 
 
     state = {
@@ -27,6 +28,31 @@ export default class FlowManagement extends PureComponent {
     }
     handleSubmit = () => {
         this.setState({open: false })
+        if (this.state.clickedButton === "first") {
+            this.props.addState({
+                name: this.state.firstState,
+                position: 1
+            })
+        }
+        else if (this.state.clickedButton === "second") {
+            this.props.addState({
+                name: this.state.secondState,
+                position: 2
+            })
+        }
+        else if (this.state.clickedButton === "third") {
+            this.props.addState({
+                name: this.state.thirdState,
+                position: 3
+            })
+        }
+        else  {
+            this.props.addState({
+                name: this.state.fourthState,
+                position: 4
+            })
+        }
+       
     }
     handleClose = () => {
         this.setState({open: false })
@@ -47,11 +73,10 @@ export default class FlowManagement extends PureComponent {
         
     } 
     renderDialog = () => {
-        console.log(this.state.clickedButton)
         let a;
         if (this.state.clickedButton === "first") { a = "firstState"}
         else if (this.state.clickedButton === "second") { a = "secondState"} 
-        else if (this.state.clickedButton === "second") { a = "thirdState"} 
+        else if (this.state.clickedButton === "third") { a = "thirdState"} 
         else { a = "fourthState"}
 
         return (<Dialog open={true}
@@ -88,14 +113,11 @@ export default class FlowManagement extends PureComponent {
             <Paper>
                 <h4>Configure State Flow </h4>
                 <div className="statebox"><button name="first" onClick={this.handleClick}>{this.state.firstState}</button></div>
-                <input type="button" value="<" />
-                <button> > </button>
+                <input type="button" value="< >" />
                 <div className="statebox"><button name="second" onClick={this.handleClick}>{this.state.secondState}</button></div>
-                <input type="button" value="<" />
-                <button> > </button>
+                <input type="button" value="< >" />
                 <div className="statebox"><button name="third" onClick={this.handleClick}>{this.state.thirdState}</button></div>
-                <input type="button" value="<" />
-                <button> > </button>
+                <input type="button" value="< >" />
                 <div className="statebox"><button name="fourth" onClick={this.handleClick}>{this.state.fourthState}</button></div>
                 { isDialogOpen? this.renderDialog() : null}
             </Paper>
@@ -103,3 +125,5 @@ export default class FlowManagement extends PureComponent {
         )
     }
 }
+
+export default connect( null, { addState })(FlowManagement)   
