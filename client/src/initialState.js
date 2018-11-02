@@ -1,5 +1,8 @@
 
-let stateList =  [];
+let stateList =  [{
+    name: "Assembled",
+    position: 1
+}];
 
 let initialState = {
     stateList: stateList,

@@ -1,8 +1,17 @@
 .statebox {
-    height: 50px;
+    /* height: 100px; */
 
 border: solid 1px darkgrey;
-
-width: 50px;
+/* 
+width: 100px; */
 display: inline-block;
+}
+
+li {
+    list-style-type: none;
+}
+
+.state-container {
+    border: solid 1px darkgrey;
+
 }
