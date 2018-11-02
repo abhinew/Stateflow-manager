@@ -73,11 +73,11 @@ class FlowManagement extends PureComponent {
         
     } 
     renderDialog = () => {
-        let a;
-        if (this.state.clickedButton === "first") { a = "firstState"}
-        else if (this.state.clickedButton === "second") { a = "secondState"} 
-        else if (this.state.clickedButton === "third") { a = "thirdState"} 
-        else { a = "fourthState"}
+        // let a;
+        // if (this.state.clickedButton === "first") { a = "firstState"}
+        // else if (this.state.clickedButton === "second") { a = "secondState"} 
+        // else if (this.state.clickedButton === "third") { a = "thirdState"} 
+        // else { a = "fourthState"}
 
         return (<Dialog open={true}
             onClose={this.handleClose}>
@@ -91,7 +91,7 @@ class FlowManagement extends PureComponent {
                 type="text"
                 fullWidth
                 onChange={this.handleChange.bind(this)}
-                value={ this.state[a] }
+                // value={ this.state[a] }
                 />
                 
             </DialogContent>
@@ -125,5 +125,5 @@ class FlowManagement extends PureComponent {
         )
     }
 }
-
+// const mapStateToProps = 
 export default connect( null, { addState })(FlowManagement)   

@@ -1,20 +1,5 @@
 
-let stateList =  [{
-    name: "Design",
-    position: 1
-},
-{
-    name: "Assembled",
-    position: 2
-},
-{
-    name: "Painted",
-    position: 3
-},
-{
-    name: "Tested",
-    position: 4
-}];
+let stateList =  [];
 
 let initialState = {
     stateList: stateList,
