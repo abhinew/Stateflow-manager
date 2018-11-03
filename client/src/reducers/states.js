@@ -6,6 +6,7 @@ export default (state = initialState.stateList, {type, payload}) => {
     switch (type) {
         case ADD_STATE:
             let createdState = {
+
                 name: payload,
                 position: newState[newState.length - 1].position + 1
             }

@@ -36,8 +36,7 @@ class FlowManagement extends PureComponent {
         
         this.setState({open: false })
         this.props.addState(this.state.state)
-        
-       
+             
     }
     handleClose = () => {
         this.setState({open: false })
