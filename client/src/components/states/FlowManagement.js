@@ -11,10 +11,14 @@ import { Button } from '@material-ui/core';
 import { addState, changeStateOrder, deleteState } from '../../actions/states'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import green from '@material-ui/core/colors/green';
+import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 const styles = theme => ({
     button: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing.unit
       }
 })
 
@@ -75,13 +79,16 @@ class FlowManagement extends PureComponent {
         return ( <li key={state.name}>
            <div className="state-container">
 
-                {state.name}<Button variant="contained" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
+                {state.name}<Button variant="outlined" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
                 <br />
-                <Link to={`/edit-state/${state.name}/${state.position}`} ><Button  variant="contained" color="primary">edit state</Button></Link>
+                <Link to={`/edit-state/${state.name}/${state.position}`} ><Button  variant="outlined" color="primary">edit state</Button></Link>
                 < br/>
                                
             </div>
-            <input className="sortButton" type="button" value="<>" onClick={this.props.changeStateOrder}/>
+            <Button variant="fab" color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder}>
+                     <RightIcon />
+            </Button>
+            {/* <input className="sortButton" type="button" value="<>"/> */}
         </li>)
     }
     render () {
@@ -96,7 +103,11 @@ class FlowManagement extends PureComponent {
                 <div className="statebox">
                     
                    {/* {this.props.states.length? this.props.states[this.props.states.length - 1].name : <Button name="addStateButton" onClick={this.handleClick}>+</Button>}  */}
-                   <Button color="primary" name="addStateButton" onClick={this.handleClick}>+</Button>
+                    <Button variant="fab" color="primary"  className={classes.button} onClick={this.handleClick}>
+                     <AddIcon />
+                    </Button>
+                    
+                   {/* <Button color="primary" name="addStateButton" >+</Button> */}
                    <ul>
                        {states.map(this.displayState)}
                    </ul>

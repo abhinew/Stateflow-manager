@@ -18,9 +18,6 @@ export default (state = initialState.stateList, {type, payload}) => {
             return newState
         
         case DELETE_STATE:
-        console.log("payload", payload)
-        console.log("payload", typeof(payload))
-
             return  newState.filter(state => state.name !== payload)
 
         case CHANGE_STATE_ORDER:
