@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import {updateState} from '../../actions/states'
 import {Redirect} from 'react-router-dom'
  
-
 class EditStateForm extends PureComponent {
     constructor(props) {
         super(props);

@@ -32,10 +32,11 @@ export const deleteState = state => {
 
 
 
-export const changeStateOrder = states => {
+export const changeStateOrder = state => {
+    console.log(state);
     return {
     type: CHANGE_STATE_ORDER,
-    payload: states
+    payload: state
     }
 }
 

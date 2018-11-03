@@ -21,12 +21,12 @@ export default (state = initialState.stateList, {type, payload}) => {
             return  newState.filter(state => state.name !== payload)
 
         case CHANGE_STATE_ORDER:
-            let element1 = newState.find(state => state.name === payload[0]);
-            let element2 = newState.find(state => state.name === payload[1]);
-            let firstIndex = newState.indexOf(element1);
+              let element1 = newState.find(state => state.name === payload.name);
+             let element2 = newState.find(state => state.position === payload.position + 1);
+             let firstIndex = newState.indexOf(element1);
             let secondIndex = newState.indexOf(element2);
-            newState[firstIndex].position = 2;
-            newState[secondIndex].position = 1;
+            newState[firstIndex].position += 1;
+            newState[secondIndex].position -= 1;
 
             return newState
 

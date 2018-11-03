@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import green from '@material-ui/core/colors/green';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 const styles = theme => ({
@@ -23,7 +23,7 @@ const styles = theme => ({
 })
 
 class FlowManagement extends PureComponent {
-
+   
 
     state = {
         open: false,
@@ -74,29 +74,36 @@ class FlowManagement extends PureComponent {
         
     }
 
-    displayState = (state) => {
+    displayState = (state, index) => {
         let {classes} = this.props;
         return ( <li key={state.name}>
+            { index && (<Button variant="fab" mini color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder.bind(this, state)}>
+                    <LeftIcon/><RightIcon />
+                </Button>) }
            <div className="state-container">
 
-                {state.name}<Button variant="outlined" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
+                {state.name}
+                
+                <Button variant="outlined" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
                 <br />
                 <Link to={`/edit-state/${state.name}/${state.position}`} ><Button  variant="outlined" color="primary">edit state</Button></Link>
                 < br/>
                                
             </div>
-            <Button variant="fab" color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder}>
-                     <RightIcon />
-            </Button>
-            {/* <input className="sortButton" type="button" value="<>"/> */}
+            
         </li>)
     }
     render () {
 
         let {classes} = this.props;
-        console.log(this.props.states.length)
+        // console.log(this.props.states.length)
         let states = this.props.states;
         let isDialogOpen = this.state.open;
+
+         let sortedStates = states.sort(function(a, b) {
+            return a.position - b.position;
+        });
+
         return (
             <Paper>
                 <h4>Configure State Flow </h4>
@@ -107,9 +114,8 @@ class FlowManagement extends PureComponent {
                      <AddIcon />
                     </Button>
                     
-                   {/* <Button color="primary" name="addStateButton" >+</Button> */}
                    <ul>
-                       {states.map(this.displayState)}
+                       {sortedStates.map(this.displayState)}
                    </ul>
 
                 </div>
