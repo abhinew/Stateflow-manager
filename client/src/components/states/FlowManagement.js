@@ -8,10 +8,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import { addState, changeStateOrder } from '../../actions/states'
+import { addState, changeStateOrder, deleteState } from '../../actions/states'
 import { Link } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
 
-
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+      }
+})
 
 class FlowManagement extends PureComponent {
 
@@ -27,7 +32,7 @@ class FlowManagement extends PureComponent {
         
         this.setState({open: false })
         this.props.addState(this.state.state)
-       
+        
        
     }
     handleClose = () => {
@@ -65,50 +70,23 @@ class FlowManagement extends PureComponent {
         
     }
 
-
-
-    renderEditDialog = () => {
-       
-        return (<Dialog open={true}
-            onClose={this.handleClose}>
-            <DialogTitle id="form-dialog-title">Create state</DialogTitle>
-            <DialogContent>
-                <TextField
-                autoFocus
-                margin="dense"
-                id="State"
-                label="Enter new state"
-                type="text"
-                fullWidth
-                onChange={this.handleChange.bind(this)}
-                />
-                
-            </DialogContent>
-            <DialogActions>
-                <Button  onClick={this.handleClose} color="primary">
-                Cancel
-                </Button>
-                <Button  onClick={this.handleSubmit.bind(this)} color="primary">
-                Submit
-                </Button>
-            </DialogActions>
-        </Dialog>)
-        
-    }
-
-
-
-
     displayState = (state) => {
+        let {classes} = this.props;
         return ( <li key={state.name}>
            <div className="state-container">
-                {state.name}
-                <Button color="primary">edit state</Button>
-                <Button color="primary">delete state</Button>
+
+                {state.name}<Button variant="contained" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
+                <br />
+                <Link to={`/edit-state/${state.name}/${state.position}`} ><Button  variant="contained" color="primary">edit state</Button></Link>
+                < br/>
+                               
             </div>
+            <input className="sortButton" type="button" value="<>" onClick={this.props.changeStateOrder}/>
         </li>)
     }
     render () {
+
+        let {classes} = this.props;
         console.log(this.props.states.length)
         let states = this.props.states;
         let isDialogOpen = this.state.open;
@@ -118,10 +96,7 @@ class FlowManagement extends PureComponent {
                 <div className="statebox">
                     
                    {/* {this.props.states.length? this.props.states[this.props.states.length - 1].name : <Button name="addStateButton" onClick={this.handleClick}>+</Button>}  */}
-                   <Button color="primary" name="addStateButton" onClick={this.handleClick}>create state</Button>
-                   
-                   
-
+                   <Button color="primary" name="addStateButton" onClick={this.handleClick}>+</Button>
                    <ul>
                        {states.map(this.displayState)}
                    </ul>
@@ -129,7 +104,6 @@ class FlowManagement extends PureComponent {
                 </div>
                
                 { isDialogOpen? this.renderDialog() : null}
-                { isDialogOpen? this.renderEditDialog() : null}
 
             </Paper>
             
@@ -141,4 +115,6 @@ const mapStateToProps = (state) => {
         states: state.states
     }
 }
-export default connect( mapStateToProps, { addState, changeStateOrder })(FlowManagement)   
+
+let FlowManagementWrapper = withStyles(styles)(FlowManagement);
+export default connect( mapStateToProps, { addState, changeStateOrder, deleteState })(FlowManagementWrapper)   

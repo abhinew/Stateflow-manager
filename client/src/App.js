@@ -12,7 +12,8 @@ class App extends Component {
 
       <div className="App">
         <Route exact path="/" component={FlowManagement} />
-
+        <Route exact path="/edit-state/:stateName/:position" component={EditStateForm} />
+        <Route exact path="/" render={() => <Redirect to="/" />} />
       </div>
       </Router>
     );
