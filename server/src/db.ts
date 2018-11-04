@@ -1,10 +1,10 @@
-import { Product } from './products/entity';
+import Product  from './products/entity';
 import { State } from './states/entity';
-
 import { createConnection } from 'typeorm'
 import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStrategy'
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
 import { snakeCase } from 'typeorm/util/StringUtils'
+import User from './users/entity';
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -32,7 +32,8 @@ export default () =>
     url: 'postgres://postgres:secret@localhost:1234/postgres',
     entities: [
       State,
-      Product
+      Product,
+      User
     ],
     synchronize: true, // careful with this in production!
     logging: true,

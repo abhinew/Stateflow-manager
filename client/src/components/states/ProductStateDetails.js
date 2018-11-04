@@ -35,7 +35,7 @@ class ProductStateDetails extends PureComponent {
     }
 
     onChangeState = (product) => {
-        this.props.moveToNextState();
+        this.props.moveToNextState(product);
     }
 
     displayProductDetails = (product) => {

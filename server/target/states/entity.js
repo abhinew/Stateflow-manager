@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", Number)
 ], State.prototype, "position", void 0);
 __decorate([
-    typeorm_1.OneToMany(_ => entity_1.Product, product => product.state),
+    typeorm_1.OneToMany(_ => entity_1.default, product => product.state),
     __metadata("design:type", Array)
 ], State.prototype, "products", void 0);
 State = __decorate([

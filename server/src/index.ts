@@ -1,12 +1,13 @@
 import 'reflect-metadata'
 import { Action, BadRequestError, useKoaServer } from 'routing-controllers'
 import setupDb from './db'
-
 import StateController from './states/controller'
 import { verify } from './jwt'
-// import User from './users/entity'
+import User from './users/entity'
 import * as Koa from 'koa'
 import {Server} from 'http'
+import ProductController from './products/controller';
+import UserController from './users/controller';
 
 const app = new Koa()
 const server = new Server(app.callback())
@@ -16,7 +17,8 @@ useKoaServer(app, {
   cors: true,
   controllers: [
     StateController,
-   
+    ProductController,
+    UserController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization
@@ -33,18 +35,18 @@ useKoaServer(app, {
 
     return false
   },
-  // currentUserChecker: async (action: Action) => {
-  //   const header: string = action.request.headers.authorization
-  //   if (header && header.startsWith('Bearer ')) {
-  //     const [ , token ] = header.split(' ')
+  currentUserChecker: async (action: Action) => {
+    const header: string = action.request.headers.authorization
+    if (header && header.startsWith('Bearer ')) {
+      const [ , token ] = header.split(' ')
       
-  //     if (token) {
-  //       const {id} = verify(token)
-  //       return User.findOneById(id)
-  //     }
-  //   }
-  //   return undefined
-  // }
+      if (token) {
+        const {id} = verify(token)
+        return User.findOneById(id)
+      }
+    }
+    return undefined
+  }
 })
 
 setupDb()

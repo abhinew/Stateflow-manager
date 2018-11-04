@@ -2,7 +2,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, ManyToOne, JoinColu
 import { State } from '../states/entity';
 
 @Entity()
-export class Product extends BaseEntity {
+export default class Product extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   productid: number
@@ -13,6 +13,15 @@ export class Product extends BaseEntity {
   @ManyToOne(_=>State, state=> state.products, {onDelete:"CASCADE"})
   @JoinColumn({name: 'stateid'})
   state: State;
+  
+  getStateName = async () => {
+    const state = await State.findOneById(this.stateid);
+    if (!state) {
+      return "";
+    }
+    return state.name;
+  }
+
 }
 
 
