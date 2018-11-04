@@ -32,6 +32,13 @@ let StateController = class StateController {
         }
         return state.save();
     }
+    async updateState(stateId, update) {
+        const state = await entity_1.State.findOneById(stateId);
+        if (!state) {
+            throw new routing_controllers_1.NotFoundError('Cannot find state');
+        }
+        return entity_1.State.merge(state, update).save();
+    }
 };
 __decorate([
     routing_controllers_1.Get("/states"),
@@ -47,6 +54,15 @@ __decorate([
     __metadata("design:paramtypes", [entity_1.State]),
     __metadata("design:returntype", Promise)
 ], StateController.prototype, "createState", null);
+__decorate([
+    routing_controllers_1.Patch('/states/:id'),
+    routing_controllers_1.OnUndefined(400),
+    __param(0, routing_controllers_1.Param('id')),
+    __param(1, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], StateController.prototype, "updateState", null);
 StateController = __decorate([
     routing_controllers_1.JsonController()
 ], StateController);

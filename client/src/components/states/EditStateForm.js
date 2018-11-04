@@ -12,6 +12,7 @@ class EditStateForm extends PureComponent {
         super(props);
         console.log(props)
         this.state = {
+            // id: props.match.params.id,
             name: props.match.params.stateName,
             position: parseInt(props.match.params.position, 10)
         }
