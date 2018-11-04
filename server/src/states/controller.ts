@@ -18,6 +18,7 @@ export default class StateController {
   async createState(
     @Body() state: State
   ) {
+    console.log("state", state)
     let statePosition = await State.getMaxPosition();
     let lastPosition = statePosition.position;
     console.log("statePosition", statePosition);
@@ -41,7 +42,7 @@ export default class StateController {
     @Param('id') stateId: number,
     @Body() update: Partial<State>
   ){
-
+    console.log("update", update);
     const state = await State.findOneById(stateId);
   
     if (!state) {

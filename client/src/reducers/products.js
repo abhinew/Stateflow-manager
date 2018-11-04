@@ -1,8 +1,7 @@
 import { GET_PRODUCTS, MOVE_TO_NEXT_STATE } from '../actions/products';
 
-import initialState from '../../src/initialState';
 
-export default (state = initialState.products, {type, payload}) => {
+export default (state = [], {type, payload}) => {
      let newState = [ ...state]
     switch (type) {
         case GET_PRODUCTS:

@@ -1,37 +1,56 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import {updateState} from '../../actions/states'
-import {Redirect} from 'react-router-dom'
- 
+import {editState} from '../../actions/states'
+import { Button } from '@material-ui/core';
+  
+
+
+
 class EditStateForm extends PureComponent {
-    constructor(props) {
-        super(props);
-        console.log(props)
-        this.state = {
-            // id: props.match.params.id,
-            name: props.match.params.stateName,
-            position: parseInt(props.match.params.position, 10)
-        }
+   
+    state={}
+
+    componentDidMount(){
+        
+      let stateid = this.props.match.params.stateid;
+        let state = this.props.states.find((state) => state.stateid === stateid);
+    
+
+      this.setState({
+        stateid
+      })
     }
+
     handleStateSubmit = () => {
-        this.props.updateState(this.state);
+        this.props.editState(this.state);
         this.props.history.push('/');
     }
 
     render() {
+        
+        let { states } = this.props;
+
         return(
             <Paper>
+                
+                <h1>Edit State Form</h1>
+                <h1>Edit State Form</h1>
                 Enter new state: <input type="text" onChange={(event) => {this.setState({ name: event.target.value })}} value ={this.state.name}/>
                 <Button onClick={this.handleStateSubmit}>Submit</Button>
                 <Button> Cancel</Button>
             </Paper>
         )
+        
     }
 
 }
 
-export default connect( null, { updateState })(EditStateForm)   
+const mapStateToProps = (state,props) => {
+    
+    return {
+         states: state.states,
+    }
+}
+
+export default connect( mapStateToProps , { editState })(EditStateForm)   

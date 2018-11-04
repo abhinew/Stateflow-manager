@@ -20,6 +20,7 @@ let StateController = class StateController {
         return states;
     }
     async createState(state) {
+        console.log("state", state);
         let statePosition = await entity_1.State.getMaxPosition();
         let lastPosition = statePosition.position;
         console.log("statePosition", statePosition);
@@ -33,6 +34,7 @@ let StateController = class StateController {
         return state.save();
     }
     async updateState(stateId, update) {
+        console.log("update", update);
         const state = await entity_1.State.findOneById(stateId);
         if (!state) {
             throw new routing_controllers_1.NotFoundError('Cannot find state');

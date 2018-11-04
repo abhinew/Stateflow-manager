@@ -1,4 +1,4 @@
-import { ADD_STATE, CHANGE_STATE_ORDER, UPDATE_STATE, DELETE_STATE, GET_STATES } from '../actions/states';
+import { ADD_STATE, CHANGE_STATE_ORDER, DELETE_STATE, GET_STATES } from '../actions/states';
 // import initialState from '../../src/initialState';
 
 
@@ -9,35 +9,31 @@ export default (state = [], {type, payload}) => {
 
     switch (type) {
         case ADD_STATE:
-            let createdState = {
+        // let createdState = {
 
-                name: payload,
-                position: newState[newState.length - 1].position + 1
-            }
-            return newState.concat(createdState)
+        //     name: payload,
+        //     position: newState[newState.length - 1].position + 1
+        // }
+        // return newState.concat(createdState)
+        return newState.concat(payload)
+
 
         case GET_STATES:
-        console.log("payload",payload);
-            return newState.concat(payload);
-
-        case UPDATE_STATE:
-            let element = newState.find(state => state.position === payload.position)
-            let currentIndex = newState.indexOf(element)
-            newState[currentIndex].name = payload.name;
-            return newState
-        
+            console.log("payload",payload);
+            return payload;
+ 
         case DELETE_STATE:
             return  newState.filter(state => state.name !== payload)
 
-        // case CHANGE_STATE_ORDER:
-        //       let element1 = newState.find(state => state.name === payload.name);
-        //      let element2 = newState.find(state => state.position === payload.position + 1);
-        //      let firstIndex = newState.indexOf(element1);
-        //     let secondIndex = newState.indexOf(element2);
-        //     newState[firstIndex].position += 1;
-        //     newState[secondIndex].position -= 1;
+        case CHANGE_STATE_ORDER:
+              let element1 = newState.find(state => state.name === payload.name);
+             let element2 = newState.find(state => state.position === payload.position + 1);
+             let firstIndex = newState.indexOf(element1);
+            let secondIndex = newState.indexOf(element2);
+            newState[firstIndex].position += 1;
+            newState[secondIndex].position -= 1;
 
-        //     return newState
+            return newState
 
         default: 
             return state;

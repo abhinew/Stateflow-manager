@@ -3,12 +3,10 @@ import * as request from 'superagent'
 import {baseUrl} from '../constants'
 
 
-export const ADD_STATE = 'ADD_STATE'
 export const CHANGE_STATE_ORDER = 'CHANGE_STATE_ORDER'
-export const UPDATE_STATE = 'UPDATE_STATE'
 export const DELETE_STATE = 'DELETE_STATE'
 export const GET_STATES = 'GET_STATES'
-
+export const ADD_STATE = 'ADD_STATE'
 
 
 export const addState = state => {
@@ -18,26 +16,15 @@ export const addState = state => {
     }
 }
 
-export const updateState = state => {
-    console.log("state", state)
-    return {
-    type: UPDATE_STATE,
-    payload: state
-    }
-}
 
 export const deleteState = state => {
-    console.log("state", state)
     return {
     type: DELETE_STATE,
     payload: state
     }
 }
 
-
-
 export const changeStateOrder = state => {
-    console.log(state);
     return {
     type: CHANGE_STATE_ORDER,
     payload: state
@@ -50,11 +37,47 @@ const getStatesSuccess = (states) => ({
 })
 
 
-export const getStates = () => (dispatch) =>{
+export const getStates = () => (dispatch, getState) =>{
+
+    const state = getState();
 
     request
       .get(`${baseUrl}/states`)
       .then(result=> dispatch( getStatesSuccess( result.body)))
       .catch(error => console.error(error))
+    
+}
+
+
+export const createState = (name) => (dispatch, getState) =>{
+
+    const state = getState()
+    // if (!state.currentUserJWT) return null
+    // const jwt = state.currentUserJWT.jwt
+    
+    return request
+      .post(`${baseUrl}/state`)
+      //.set('Authorization', `Bearer ${jwt}`)
+      .send({name})
+      .then(result=> dispatch(addState(result.body)))
+      .catch(error=> console.error(error))
+  
+  }
+
+ 
+
+  export const editState = (updatedState) => (dispatch, getState) => {
+    // const state = getState();
+    // const jwt = state.currentUser.jwt
+
+    // if (isExpired(jwt)) return dispatch(logout())
+  
+    request
+      .patch(`${baseUrl}/states/${updatedState.stateid}`)
+      .set('Access-Control-Allow-Origin', '*')
+      //.set('Authorization', `Bearer ${jwt}`)
+      .send({name: updatedState.name})
+      .then(_ => dispatch(getStates()))
+      .catch(err => console.error(err))
 
 }

@@ -17,11 +17,11 @@ class App extends Component {
         <nav>
             <TopBar />
         </nav>
-        <Route exact path="/" component={FlowManagement} />
+        <Route exact path="/allstates" component={FlowManagement} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/logout" component={LogoutPage} />
-        <Route exact path="/edit-state/:stateName/:position" component={EditStateForm} />
-        <Route exact path="/" render={() => <Redirect to="/" />} />
+        <Route exact path="/edit-state/:stateid" component={EditStateForm} />
+        <Route exact path="/" render={() => <Redirect to="/allstates" />} />
         <Route exact path="/product-details" component={ProductStateDetails} />
       </div>
       </Router>

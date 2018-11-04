@@ -2,20 +2,19 @@ import  Product  from './entity';
 import { JsonController, Get } from 'routing-controllers'
 
 
-
 @JsonController()
 export default class ProductController {
 
   @Get("/products")
   async getProducts() {
     const products = await Product.find()
-      var productsList = new Array();
+      let productsList = new Array();
 
-      for (var iter = 0; iter < products.length; iter++) {
-        var current = products[iter]
+      for (let iter = 0; iter < products.length; iter++) {
+        let current = products[iter]
         
         let name = await products[iter].getStateName()
-        var prod = {
+        let prod = {
           state: name
         }
         Object.assign(prod, current);

@@ -8,13 +8,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import { addState, changeStateOrder, deleteState, getStates } from '../../actions/states'
+import { createState, changeStateOrder, deleteState, getStates } from '../../actions/states'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import green from '@material-ui/core/colors/green';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightIcon from '@material-ui/icons/KeyboardArrowRight';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 
 const styles = theme => ({
@@ -31,16 +32,15 @@ class FlowManagement extends PureComponent {
 
     state = {
         open: false
-
-        // state: null
     }
+
     handleClick = () => {
         this.setState({open : true})
     }
     handleSubmit = () => {
         
         this.setState({open: false })
-        this.props.addState(this.state.state)
+        this.props.createState(this.state.state)
              
     }
     handleClose = () => {
@@ -80,17 +80,22 @@ class FlowManagement extends PureComponent {
 
     displayState = (state, index) => {
         let {classes} = this.props;
-        return ( <li key={state.name}>
+        return ( <li key={state.stateid}>
             { index && (<Button variant="fab" mini color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder.bind(this, state)}>
                     <LeftIcon/><RightIcon />
                 </Button>) }
            <div className="state-container">
 
                 {state.name}
-                
-                <Button variant="outlined" className={classes.button} color="primary" onClick={this.props.deleteState.bind(this, state.name)}>X</Button> 
+                <IconButton className={classes.button} aria-label="Delete"  onClick={this.props.deleteState.bind(this, state.name)}>
+                    <DeleteIcon />
+                </IconButton>
+                {/* <Button variant="outlined" className={classes.button} color="primary">X</Button>  */}
                 <br />
-                <Link to={`/edit-state/${state.name}/${state.position}`} ><Button  variant="outlined" color="primary">edit state</Button></Link>
+                {/* <Button variant="fab" size="small" color="secondary" aria-label="Edit" className={classes.button}>
+                    <Icon>edit_icon</Icon>
+                </Button> */}
+                <Link to={`/edit-state/${state.stateid}`} ><Button  variant="outlined" color="primary">Edit state</Button></Link>
                 < br/>
                                
             </div>
@@ -136,4 +141,4 @@ const mapStateToProps = (state) => {
 }
 
 let FlowManagementWrapper = withStyles(styles)(FlowManagement);
-export default connect( mapStateToProps, { addState, changeStateOrder, deleteState, getStates })(FlowManagementWrapper)   
+export default connect( mapStateToProps, { createState, changeStateOrder, deleteState, getStates })(FlowManagementWrapper)   
