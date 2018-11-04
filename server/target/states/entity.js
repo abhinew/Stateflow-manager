@@ -20,7 +20,7 @@ let State = class State extends typeorm_1.BaseEntity {
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], State.prototype, "id", void 0);
+], State.prototype, "stateid", void 0);
 __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)

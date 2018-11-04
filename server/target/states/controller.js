@@ -39,6 +39,12 @@ let StateController = class StateController {
         }
         return entity_1.State.merge(state, update).save();
     }
+    async deleteState(stateid) {
+        const state = await entity_1.State.findOneById(stateid);
+        if (!state)
+            throw new routing_controllers_1.NotFoundError("State Not Found");
+        return state.remove();
+    }
 };
 __decorate([
     routing_controllers_1.Get("/states"),
@@ -63,6 +69,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], StateController.prototype, "updateState", null);
+__decorate([
+    routing_controllers_1.Delete('/states/:stateid([0-9]+)'),
+    __param(0, routing_controllers_1.Param('stateid')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], StateController.prototype, "deleteState", null);
 StateController = __decorate([
     routing_controllers_1.JsonController()
 ], StateController);

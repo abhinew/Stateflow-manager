@@ -4,7 +4,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity} from 'typeorm'
 export class State extends BaseEntity {
 
   @PrimaryGeneratedColumn()
-  id: number
+  stateid: number
 
   @Column('text')
   name: string
