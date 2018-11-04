@@ -1,4 +1,6 @@
+import { Product } from './products/entity';
 import { State } from './states/entity';
+
 import { createConnection } from 'typeorm'
 import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStrategy'
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
@@ -29,7 +31,8 @@ export default () =>
     type: "postgres",
     url: 'postgres://postgres:secret@localhost:1234/postgres',
     entities: [
-      State
+      State,
+      Product
     ],
     synchronize: true, // careful with this in production!
     logging: true,

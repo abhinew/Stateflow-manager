@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const entity_1 = require("./states/entity");
+const entity_1 = require("./products/entity");
+const entity_2 = require("./states/entity");
 const typeorm_1 = require("typeorm");
 const DefaultNamingStrategy_1 = require("typeorm/naming-strategy/DefaultNamingStrategy");
 const StringUtils_1 = require("typeorm/util/StringUtils");
@@ -22,7 +23,8 @@ exports.default = () => typeorm_1.createConnection({
     type: "postgres",
     url: 'postgres://postgres:secret@localhost:1234/postgres',
     entities: [
-        entity_1.State
+        entity_2.State,
+        entity_1.Product
     ],
     synchronize: true,
     logging: true,

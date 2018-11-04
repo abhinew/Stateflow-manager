@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
+const entity_1 = require("../products/entity");
 let State = class State extends typeorm_1.BaseEntity {
     static getMaxPosition() {
         return this.createQueryBuilder("state")
@@ -29,6 +30,10 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
 ], State.prototype, "position", void 0);
+__decorate([
+    typeorm_1.OneToMany(_ => entity_1.Product, product => product.state),
+    __metadata("design:type", Array)
+], State.prototype, "products", void 0);
 State = __decorate([
     typeorm_1.Entity()
 ], State);

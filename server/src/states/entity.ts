@@ -1,4 +1,5 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity} from 'typeorm'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, OneToMany} from 'typeorm'
+import { Product } from '../products/entity';
 
 @Entity()
 export class State extends BaseEntity {
@@ -11,6 +12,9 @@ export class State extends BaseEntity {
 
   @Column()
   position: number
+
+  @OneToMany(_=> Product, product=>product.state)
+  products: Product[]
 
   static getMaxPosition() {
     return this.createQueryBuilder("state")
