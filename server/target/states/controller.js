@@ -19,14 +19,16 @@ let StateController = class StateController {
         const states = await entity_1.State.find();
         return states;
     }
-    createState(state) {
-        let maxPosition = entity_1.State.getMaxPosition();
-        console.log(maxPosition);
-        if (maxPosition) {
-            state.position = maxPosition;
+    async createState(state) {
+        let statePosition = await entity_1.State.getMaxPosition();
+        let lastPosition = statePosition.position;
+        console.log("statePosition", statePosition);
+        if (lastPosition <= 0) {
+            lastPosition = 1;
+            state.position = lastPosition;
         }
         else {
-            state.position = maxPosition;
+            state.position = lastPosition + 1;
         }
         return state.save();
     }
@@ -43,7 +45,7 @@ __decorate([
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [entity_1.State]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], StateController.prototype, "createState", null);
 StateController = __decorate([
     routing_controllers_1.JsonController()

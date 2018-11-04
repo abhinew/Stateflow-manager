@@ -14,17 +14,19 @@ import { JsonController, Post, HttpCode, Body, Get } from 'routing-controllers'
     // @Authorized()
     @Post('/state')
     @HttpCode(201)
-     createState(
+     async createState(
       @Body() state: State
     ) {
-      let maxPosition =  State.getMaxPosition();
-      console.log(maxPosition);
-      if (maxPosition) {
-        state.position = maxPosition; 
+      let statePosition = await State.getMaxPosition();
+      let lastPosition = statePosition.position;
+      console.log("statePosition", statePosition);
+      if (lastPosition <= 0) {
+        lastPosition = 1
+        state.position = lastPosition; 
 
       }
       else {
-        state.position = maxPosition; 
+        state.position = lastPosition + 1; 
 
       }
       return state.save()

@@ -15,7 +15,7 @@ export class State extends BaseEntity {
   static getMaxPosition() {
     return this.createQueryBuilder("state")
                 .select('max(state.position) as "position"')
-                .getOne();
+                .getRawOne();
                 
   }
 }

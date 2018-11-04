@@ -14,7 +14,7 @@ let State = class State extends typeorm_1.BaseEntity {
     static getMaxPosition() {
         return this.createQueryBuilder("state")
             .select('max(state.position) as "position"')
-            .getOne();
+            .getRawOne();
     }
 };
 __decorate([
