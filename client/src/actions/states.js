@@ -1,4 +1,3 @@
-// import state from "../reducers/state";
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
 
@@ -16,13 +15,6 @@ export const addState = state => {
     }
 }
 
-
-// const deleteState = state => {
-//     return {
-//     type: DELETE_STATE,
-//     payload: state
-//     }
-// }
 
 export const changeStateOrder = state => {
     return {

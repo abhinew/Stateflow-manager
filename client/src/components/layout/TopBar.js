@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router'
-// import {userId} from '../../jwt'
+import {userId} from '../../jwt'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
@@ -19,7 +19,7 @@ const styles = theme => ({
 
 const TopBar = (props) => {
   const { history, user, classes } = props
-
+  console.log(user)
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>
@@ -27,23 +27,23 @@ const TopBar = (props) => {
           <Link to="/" className={classes.title}>Workflow Management System</Link>
         </Typography>
         {
-          // user &&
-          // <Button color="inherit">{ user.firstName }</Button>
+          user &&
+          <Button color="inherit">{ user.fullName }</Button>
         }
 
         {
-          //  !user &&
+           !user &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
         }
         {
-          // !user &&
+          !user &&
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {
           <Button color="inherit" onClick={() => history.push('/product-details')}>All Products</Button>
         }
         {
-          // user && 
+          user && 
           <Button color="inherit" onClick={() => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>
@@ -51,17 +51,17 @@ const TopBar = (props) => {
   )
 }
 
-// const mapStateToProps = state => {
+const mapStateToProps = state => {
 
 
-//   return {
-//     user: state.currentUser && state.users &&
-//     state.users[userId(state.currentUser.jwt)]
-//   }
+  return {
+    user: state.currentUser 
+    // && state.users && state.users[userId(state.currentUser.jwt)]
+  }
 
-// }
+}
 
 
 export default withStyles(styles)(withRouter(
-  connect(null)(TopBar)
+  connect(mapStateToProps)(TopBar)
 ));

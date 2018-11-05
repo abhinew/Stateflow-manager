@@ -19,8 +19,8 @@ class LoginPage extends PureComponent {
 			<div>
 				
 				<Signin onSubmit={this.handleSubmit} />
-        {/* { this.props.error && 
-          <span style={{color:'red'}}>{this.props.error}</span> } */}
+        { this.props.error && 
+          <span style={{color:'red'}}>{this.props.error}</span> }
 			</div>
 		)
 	}

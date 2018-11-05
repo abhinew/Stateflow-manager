@@ -9,5 +9,6 @@ export default {
   states,
   products,
   currentUserJWT,
-  currentUserDetails
+  currentUser: currentUserDetails
+  
 }
