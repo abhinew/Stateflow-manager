@@ -37,9 +37,9 @@ class ProductStateDetails extends PureComponent {
     }
 
     displayProductDetails = (product) => {
-        let {classes } = this.props
-
-       
+        let {classes, states } = this.props
+         let currentState = states.find(states => states.stateid === product.stateid )
+       console.log(currentState.name)
         return (
             <li>
                 <Card className={classes.card}>
@@ -49,7 +49,7 @@ class ProductStateDetails extends PureComponent {
           Product ID: {product.productid}
         </Typography>
         <Typography component="p">
-          Current State : {product.stateid}
+          Current State : {currentState.name}
           
         </Typography>
       </CardContent>
@@ -62,13 +62,14 @@ class ProductStateDetails extends PureComponent {
     }
 
     render() {
-        let { products} = this.props
+        let { products, states} = this.props
+       
         return(
             <div>
-                {products && <ul>
+                { states.length &&  <ul>
                 <h2>Product Status Details</h2>
                     {products.map(this.displayProductDetails)}
-                </ul>}
+                </ul> }
             </div>
          
         )
@@ -77,9 +78,10 @@ class ProductStateDetails extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+    
     return {
-        products: state.products
-       
+        products: state.products,
+        states: state.states
     }
 }
 
