@@ -1,11 +1,5 @@
 # Workflow-management-system
 
-# Ebay-Uber MixUp
-
-## Live version : [here](https://ebay-for-tickets.herokuapp.com/) 
-
-
-
 
 TypeORM / Typscript / Koa - React.js
 
