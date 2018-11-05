@@ -90,11 +90,8 @@ class FlowManagement extends PureComponent {
                 <IconButton className={classes.button} aria-label="Delete"  onClick={this.props.deleteState.bind(this, state.stateid)}>
                     <DeleteIcon />
                 </IconButton>
-                {/* <Button variant="outlined" className={classes.button} color="primary">X</Button>  */}
                 <br />
-                {/* <Button variant="fab" size="small" color="secondary" aria-label="Edit" className={classes.button}>
-                    <Icon>edit_icon</Icon>
-                </Button> */}
+               
                 <Link to={`/edit-state/${state.stateid}`} ><Button  variant="outlined" color="primary">Edit state</Button></Link>
                 < br/>
                                
