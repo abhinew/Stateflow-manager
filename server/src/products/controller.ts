@@ -1,5 +1,5 @@
 import  Product  from './entity';
-import { JsonController, Get, Param, Patch } from 'routing-controllers'
+import { JsonController, Get } from 'routing-controllers'
 
 
 @JsonController()
@@ -13,17 +13,17 @@ export default class ProductController {
     
   }
 
-  @Get("/products/:productid([0-9]+)")
-  async moveToNextState(
-    @Param('productid') productid: number,
+  // @Get("/products/:productid([0-9]+)")
+  // async moveToNextState(
+  //   @Param('productid') productid: number,
 
-  ) {
-    const product = await Product.findOneById(productid, {relations: ["state"]});
-    let currentPosition = product.state.position;
-    console.log(currentPosition);
-    product.state.position++;
-    return product.save();
+  // ) {
+  //   const product = await Product.findOneById(productid, {relations: ["state"]});
+  //   let currentPosition = product.state.position;
+  //   console.log(currentPosition);
+  //   product.state.position++;
+  //   return product.save();
     
-  }
+  // }
 
 }

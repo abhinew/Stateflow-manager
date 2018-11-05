@@ -10,6 +10,7 @@ const Koa = require("koa");
 const http_1 = require("http");
 const controller_2 = require("./products/controller");
 const controller_3 = require("./users/controller");
+const controller_4 = require("./logins/controller");
 const app = new Koa();
 const server = new http_1.Server(app.callback());
 const port = process.env.PORT || 4000;
@@ -18,7 +19,8 @@ routing_controllers_1.useKoaServer(app, {
     controllers: [
         controller_1.default,
         controller_2.default,
-        controller_3.default
+        controller_3.default,
+        controller_4.default
     ],
     authorizationChecker: (action) => {
         const header = action.request.headers.authorization;

@@ -8,6 +8,8 @@ import * as Koa from 'koa'
 import {Server} from 'http'
 import ProductController from './products/controller';
 import UserController from './users/controller';
+import LoginController from './logins/controller'
+
 
 const app = new Koa()
 const server = new Server(app.callback())
@@ -18,7 +20,8 @@ useKoaServer(app, {
   controllers: [
     StateController,
     ProductController,
-    UserController
+    UserController,
+    LoginController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization

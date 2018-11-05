@@ -9,7 +9,7 @@ export default class UserController {
     @Body() data: User,
     @QueryParam('isAdmin') isBoss : boolean
   ) {
-    
+    console.log("data", data)
     const {password, email, ...rest} = data
     if( await User.findOne({email: email })){
       throw new BadRequestError("email already exists")

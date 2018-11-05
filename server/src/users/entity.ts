@@ -10,8 +10,8 @@ export default class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
-  @IsString()
-  @MinLength(2)
+  // @IsString()
+  // @MinLength(2)
   @Column('text')
   fullName: string
 

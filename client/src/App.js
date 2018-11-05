@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import TopBar from './components/layout/TopBar';
 import LoginPage from './components/login/LoginPage';
 import LogoutPage from './components/logout/LogoutPage';
@@ -8,6 +7,8 @@ import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import FlowManagement from "./components/states/FlowManagement";
 import EditStateForm from './components/states/EditStateForm';
 import ProductStateDetails from './components/states/ProductStateDetails';
+import SignupPage from './components/signup/SignupPage';
+
 
 class App extends Component {
   render() {
@@ -20,6 +21,8 @@ class App extends Component {
         <Route exact path="/allstates" component={FlowManagement} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/logout" component={LogoutPage} />
+        <Route exact path="/signup" component={SignupPage} />
+
         <Route exact path="/edit-state/:stateid" component={EditStateForm} />
         <Route exact path="/" render={() => <Redirect to="/allstates" />} />
         <Route exact path="/product-details" component={ProductStateDetails} />

@@ -18,12 +18,22 @@ export default class LoginController {
   async authenticate(
     @Body() { email, password }: AuthenticatePayload
   ) {
+
+    console.log("/logins endpoint")
+
     const user = await User.findOne({ where: { email } })
+    console.log("user", user);
+
+
+
     if (!user || !user.id) throw new BadRequestError('A user with this email does not exist')
 
     if (!await user.checkPassword(password)) throw new BadRequestError('The password is not correct')
 
     const jwt = sign({ id: user.id })
+
+    console.log("jwt", jwt)
+
     return { jwt }
   }
 }
