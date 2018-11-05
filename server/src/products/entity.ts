@@ -14,13 +14,7 @@ export default class Product extends BaseEntity {
   @JoinColumn({name: 'stateid'})
   state: State;
   
-  // getStateName = async () => {
-  //   const state = await State.findOneById(this.stateid);
-  //   if (!state) {
-  //     return "";
-  //   }
-  //   return state.name;
-  //}
+ 
 
 }
 

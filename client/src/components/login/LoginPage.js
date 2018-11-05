@@ -19,8 +19,8 @@ class LoginPage extends PureComponent {
 			<div>
 				
 				<Signin onSubmit={this.handleSubmit} />
-        { this.props.error && 
-          <span style={{color:'red'}}>{this.props.error}</span> }
+        {/* { this.props.error && 
+          <span style={{color:'red'}}>{this.props.error}</span> } */}
 			</div>
 		)
 	}
@@ -30,8 +30,8 @@ const mapStateToProps = function (state) {
 	return {
 		authenticated: state.currentUser !== null,
   		users: state.users === null ? null : state.users,
-		currentUser: state.currentUser,
-    	error: state.login.error
+		currentUser: state.currentUser
+    	//error: state.login.error
 	}
 }
 

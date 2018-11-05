@@ -2,8 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { Exclude } from 'class-transformer';
 import { MinLength, IsString, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt'
-// import Ticket from '../tickets/entity';
-// import Comment from '../comments/entity';
+
 
 @Entity()
 export default class User extends BaseEntity {

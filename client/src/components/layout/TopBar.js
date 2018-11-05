@@ -43,7 +43,7 @@ const TopBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/product-details')}>All Products</Button>
         }
         {
-          user && 
+          // user && 
           <Button color="inherit" onClick={() => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>
