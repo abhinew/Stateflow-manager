@@ -6,7 +6,7 @@ export default (state = [], {type, payload}) => {
     switch (type) {
         case GET_PRODUCTS:
             
-            return newState;    
+            return payload;    
         case MOVE_TO_NEXT_STATE:
             
             return newState;  

@@ -48,15 +48,7 @@ export default class StateController {
     if (!state) {
       throw new NotFoundError('Cannot find state')
     } 
-    // else {
-    //   if (update.state_id !== undefined) {
-    //     console.log("changing the id is not allowed")
-    //     delete update.state_id
-    //   }
-    //   if (update.name !== undefined ) {
-    //     return undefined
-    //   }
-    // }
+   
     
     return State.merge(state, update).save()
   }

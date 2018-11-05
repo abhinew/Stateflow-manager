@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { getProducts, moveToNextState } from '../../actions/products'
-
+import { getStates } from '../../actions/states'
 const styles = {
     card: {
       minWidth: 275,
@@ -29,6 +29,7 @@ class ProductStateDetails extends PureComponent {
    
     componentDidMount() {
         this.props.getProducts();
+        this.props.getStates();
     }
 
     onChangeState = (product) => {
@@ -38,16 +39,17 @@ class ProductStateDetails extends PureComponent {
     displayProductDetails = (product) => {
         let {classes } = this.props
 
+       
         return (
             <li>
                 <Card className={classes.card}>
         <CardContent>
         
         <Typography variant="h5" component="h2">
-          Product ID: {product.id}
+          Product ID: {product.productid}
         </Typography>
         <Typography component="p">
-          Current State : {product.currentState}
+          Current State : {product.stateid}
           
         </Typography>
       </CardContent>
@@ -60,12 +62,15 @@ class ProductStateDetails extends PureComponent {
     }
 
     render() {
-        let {classes, products} = this.props
+        let { products} = this.props
         return(
-         <ul>
-             <h2>Product Status Details</h2>
-             {products.map(this.displayProductDetails)}
-         </ul>
+            <div>
+                {products && <ul>
+                <h2>Product Status Details</h2>
+                    {products.map(this.displayProductDetails)}
+                </ul>}
+            </div>
+         
         )
     }
 
@@ -74,9 +79,10 @@ class ProductStateDetails extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         products: state.products
+       
     }
 }
 
 let ProductStateDetailsWrapper =   withStyles(styles)(ProductStateDetails);
 
-export default connect( mapStateToProps, { getProducts, moveToNextState })(ProductStateDetailsWrapper);  
+export default connect( mapStateToProps, { getProducts, moveToNextState, getStates })(ProductStateDetailsWrapper);  

@@ -9,21 +9,14 @@ export default (state = [], {type, payload}) => {
 
     switch (type) {
         case ADD_STATE:
-        // let createdState = {
-
-        //     name: payload,
-        //     position: newState[newState.length - 1].position + 1
-        // }
-        // return newState.concat(createdState)
         return newState.concat(payload)
 
 
         case GET_STATES:
-            console.log("payload",payload);
             return payload;
  
-        case DELETE_STATE:
-            return  newState.filter(state => state.name !== payload)
+        // case DELETE_STATE:
+        //     return  newState.filter(state => state.name !== payload)
 
         case CHANGE_STATE_ORDER:
               let element1 = newState.find(state => state.name === payload.name);

@@ -27,16 +27,16 @@ const TopBar = (props) => {
           <Link to="/" className={classes.title}>Workflow Management System</Link>
         </Typography>
         {
-          user &&
-          <Button color="inherit">{ user.firstName }</Button>
+          // user &&
+          // <Button color="inherit">{ user.firstName }</Button>
         }
 
         {
-           !user &&
+          //  !user &&
           <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
         }
         {
-          !user &&
+          // !user &&
           <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
         }
         {

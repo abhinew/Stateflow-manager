@@ -17,12 +17,12 @@ export const addState = state => {
 }
 
 
-export const deleteState = state => {
-    return {
-    type: DELETE_STATE,
-    payload: state
-    }
-}
+// const deleteState = state => {
+//     return {
+//     type: DELETE_STATE,
+//     payload: state
+//     }
+// }
 
 export const changeStateOrder = state => {
     return {
@@ -81,3 +81,16 @@ export const createState = (name) => (dispatch, getState) =>{
       .catch(err => console.error(err))
 
 }
+
+
+export const deleteState = (stateid) => (dispatch, getState) =>{
+    // const state = getState()
+    // if (!state.currentUserJWT) return null
+    // const jwt = state.currentUserJWT.jwt
+    console.log("stateid", stateid)
+    request
+      .delete(`${baseUrl}/states/${stateid}`)
+      //.set('Authorization', `Bearer ${jwt}`)
+      .then(result=> dispatch( getStates() ))
+      .catch(error => console.error(error))
+  }
