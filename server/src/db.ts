@@ -34,7 +34,6 @@ export default () =>
       State,
       Product,
       User
-  
     ],
     synchronize: true, // careful with this in production!
     logging: true,

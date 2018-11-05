@@ -30,7 +30,7 @@ export default class UserController {
     @Param('id') id: number,
     @CurrentUser() user :User
   ) {
-    if(user.id === id || user.isAdmin) return User.findOneById(id, {relations:["tickets", "comments"]})
+    if(user.id === id || user.isAdmin) return User.findOneById(id)
     throw new UnauthorizedError("Only logged in user or Admins can access user details")
   }
 

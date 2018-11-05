@@ -117,5 +117,5 @@ export const getCurrentUser = () => (dispatch, getState) =>{
     .get(`${baseUrl}/users/${id}`)
     .set('Authorization', `Bearer ${jwt}`)
     .then(result => dispatch(setCurrentUserDetails(result.body)))
-    .catch(e=> console.err(e))
+    .catch(e=> console.error(e))
 }

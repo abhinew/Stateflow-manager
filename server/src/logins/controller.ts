@@ -19,7 +19,7 @@ export default class LoginController {
     @Body() { email, password }: AuthenticatePayload
   ) {
 
-    console.log("/logins endpoint")
+    console.log("logins endpoint")
 
     const user = await User.findOne({ where: { email } })
     console.log("user", user);
