@@ -39,7 +39,6 @@ class ProductStateDetails extends PureComponent {
     displayProductDetails = (product) => {
         let {classes, states } = this.props
          let currentState = states.find(states => states.stateid === product.stateid )
-       console.log(currentState.name)
         return (
             <li>
                 <Card className={classes.card}>

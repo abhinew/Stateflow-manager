@@ -16,12 +16,12 @@ const entity_1 = require("./entity");
 const routing_controllers_1 = require("routing-controllers");
 let StateController = class StateController {
     async getStates() {
-        const states = await entity_1.State.find();
+        const states = await entity_1.default.find();
         return states;
     }
     async createState(state) {
         console.log("state", state);
-        let statePosition = await entity_1.State.getMaxPosition();
+        let statePosition = await entity_1.default.getMaxPosition();
         let lastPosition = statePosition.position;
         console.log("statePosition", statePosition);
         if (lastPosition <= 0) {
@@ -35,14 +35,14 @@ let StateController = class StateController {
     }
     async updateState(stateId, update) {
         console.log("update", update);
-        const state = await entity_1.State.findOneById(stateId);
+        const state = await entity_1.default.findOneById(stateId);
         if (!state) {
             throw new routing_controllers_1.NotFoundError('Cannot find state');
         }
-        return entity_1.State.merge(state, update).save();
+        return entity_1.default.merge(state, update).save();
     }
     async deleteState(stateid) {
-        const state = await entity_1.State.findOneById(stateid);
+        const state = await entity_1.default.findOneById(stateid);
         if (!state)
             throw new routing_controllers_1.NotFoundError("State Not Found");
         return state.remove();
@@ -59,7 +59,7 @@ __decorate([
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [entity_1.State]),
+    __metadata("design:paramtypes", [entity_1.default]),
     __metadata("design:returntype", Promise)
 ], StateController.prototype, "createState", null);
 __decorate([

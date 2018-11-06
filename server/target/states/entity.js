@@ -37,5 +37,5 @@ __decorate([
 State = __decorate([
     typeorm_1.Entity()
 ], State);
-exports.State = State;
+exports.default = State;
 //# sourceMappingURL=entity.js.map

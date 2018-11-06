@@ -1,4 +1,4 @@
-import { State } from './entity';
+import  State  from './entity';
 import { JsonController, Post, HttpCode, Body, Get, Param, OnUndefined, NotFoundError, Patch, Delete } from 'routing-controllers'
 // import User from '../users/entity'
 
@@ -34,8 +34,6 @@ export default class StateController {
     return state.save()
   }
 
-
-
   @Patch('/states/:id')
   @OnUndefined(400)
   async updateState(
@@ -48,8 +46,6 @@ export default class StateController {
     if (!state) {
       throw new NotFoundError('Cannot find state')
     } 
-   
-    
     return State.merge(state, update).save()
   }
     

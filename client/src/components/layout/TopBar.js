@@ -19,7 +19,6 @@ const styles = theme => ({
 
 const TopBar = (props) => {
   const { history, user, classes } = props
-  console.log(user)
   return (
     <AppBar position="absolute" style={{zIndex:10}}>
       <Toolbar>

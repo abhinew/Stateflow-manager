@@ -24,7 +24,7 @@ exports.default = () => typeorm_1.createConnection({
     type: "postgres",
     url: 'postgres://postgres:secret@localhost:1234/postgres',
     entities: [
-        entity_2.State,
+        entity_2.default,
         entity_1.default,
         entity_3.default
     ],

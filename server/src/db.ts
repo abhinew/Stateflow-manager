@@ -1,5 +1,5 @@
 import Product  from './products/entity';
-import { State } from './states/entity';
+import State  from './states/entity';
 import { createConnection } from 'typeorm'
 import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStrategy'
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'

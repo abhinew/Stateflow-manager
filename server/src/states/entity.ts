@@ -2,7 +2,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, OneToMany} from 'ty
 import Product  from '../products/entity';
 
 @Entity()
-export class State extends BaseEntity {
+export default class State extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   stateid: number
