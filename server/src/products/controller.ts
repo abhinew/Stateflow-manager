@@ -9,8 +9,8 @@ export default class ProductController {
 
   @Get("/products")
   async getProducts() {
-    const products = await Product.find()
-
+    const products = await Product.find();
+    
     return products
     
   }

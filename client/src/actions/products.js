@@ -13,12 +13,7 @@ const getProductsSuccess = (products) => {
     }
 }
 
-export const moveToNextState = (product) => {
-    return {
-      type: MOVE_TO_NEXT_STATE,
-      payload: product
-    }
-}
+
 
 
 export const getProducts = () => (dispatch, getState) =>{
@@ -31,3 +26,12 @@ export const getProducts = () => (dispatch, getState) =>{
     .catch(error => console.error(error))
   
 }
+
+export const moveToNextState = (product) => (dispatch, getState) => {
+  request
+  .patch(`${baseUrl}/products/${product.productid}`)
+  .set('Access-Control-Allow-Origin', '*')
+  .then(_ => dispatch(getProducts()))
+  .catch(err => console.error(err))
+}
+
