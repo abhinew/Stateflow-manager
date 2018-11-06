@@ -16,13 +16,13 @@ export const addState = state => {
 }
 
 
-export const changeStateOrder = state => {
-    console.log(state)
-    return {
-    type: CHANGE_STATE_ORDER,
-    payload: state
-    }
-}
+// export const changeStateOrder = state => {
+//     console.log(state)
+//     return {
+//     type: CHANGE_STATE_ORDER,
+//     payload: state
+//     }
+// }
 
 const getStatesSuccess = (states) => ({
     type: GET_STATES,
@@ -87,3 +87,19 @@ export const deleteState = (stateid) => (dispatch, getState) =>{
       .then(result=> dispatch( getStates() ))
       .catch(error => console.error(error))
   }
+
+
+  export const changeStateOrder = (stateid) => (dispatch, getState) => {
+    // const state = getState();
+    // const jwt = state.currentUser.jwt
+
+    // if (isExpired(jwt)) return dispatch(logout())
+  
+    request
+      .patch(`${baseUrl}/states/${stateid}`)
+      .set('Access-Control-Allow-Origin', '*')
+      //.set('Authorization', `Bearer ${jwt}`)
+      .then(_ => dispatch(getStates()))
+      .catch(err => console.error(err))
+
+}

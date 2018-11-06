@@ -1,5 +1,4 @@
 import { ADD_STATE, GET_STATES } from '../actions/states';
-// import initialState from '../../src/initialState';
 
 
 
