@@ -47,6 +47,17 @@ let StateController = class StateController {
             throw new routing_controllers_1.NotFoundError("State Not Found");
         return state.remove();
     }
+    async changeStateOrder(stateid) {
+        const state = await entity_1.default.findOneById(stateid);
+        if (!state)
+            throw new routing_controllers_1.NotFoundError('Cannot find state');
+        const previousState = await entity_1.default.findOne({ position: state.position - 1 });
+        if (!previousState)
+            throw new routing_controllers_1.NotFoundError('Cannot find state');
+        Object.assign(state, { position: state.position - 1 });
+        Object.assign(previousState, { position: previousState.position + 1 });
+        return state.save(), previousState.save();
+    }
 };
 __decorate([
     routing_controllers_1.Get("/states"),
@@ -78,6 +89,14 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], StateController.prototype, "deleteState", null);
+__decorate([
+    routing_controllers_1.Patch('/states/:id'),
+    routing_controllers_1.OnUndefined(400),
+    __param(0, routing_controllers_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], StateController.prototype, "changeStateOrder", null);
 StateController = __decorate([
     routing_controllers_1.JsonController()
 ], StateController);

@@ -81,7 +81,7 @@ class FlowManagement extends PureComponent {
     displayState = (state, index) => {
         let {classes} = this.props;
         return ( <li key={state.stateid}>
-            { index && (<Button variant="fab" mini color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder.bind(this, state)}>
+            { index && (<Button variant="fab" mini color="primary" aria-label="Add" className="sortButton"  onClick={this.props.changeStateOrder.bind(this, state.stateid)}>
                     <LeftIcon/><RightIcon />
                 </Button>) }
            <div className="state-container">

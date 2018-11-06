@@ -27,9 +27,10 @@ export const getProducts = () => (dispatch, getState) =>{
   
 }
 
-export const moveToNextState = (product) => (dispatch, getState) => {
+export const moveToNextState = (productid) => (dispatch, getState) => {
+  
   request
-  .patch(`${baseUrl}/products/${product.productid}`)
+  .patch(`${baseUrl}/products/${productid}`)
   .set('Access-Control-Allow-Origin', '*')
   .then(_ => dispatch(getProducts()))
   .catch(err => console.error(err))

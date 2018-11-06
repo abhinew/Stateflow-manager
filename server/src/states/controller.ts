@@ -70,6 +70,21 @@ export default class StateController {
 
   }
 
+  @Patch('/states/:id')
+  @OnUndefined(400)
+  async changeStateOrder(
+    @Param('id') stateid: number,
+  ){
+    const state = await State.findOneById(stateid);
+    if (!state) throw new NotFoundError('Cannot find state')
+    const previousState = await State.findOne({position : state.position - 1})
+    if (!previousState) throw new NotFoundError('Cannot find state')
+
+    Object.assign(state, { position: state.position - 1 })
+    Object.assign(previousState, { position: previousState.position + 1});
+    return state.save(),previousState.save()
+  }
+
 }
   
   

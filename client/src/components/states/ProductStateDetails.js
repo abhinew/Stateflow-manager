@@ -32,8 +32,8 @@ class ProductStateDetails extends PureComponent {
         this.props.getStates();
     }
 
-    handleClick = (product) => {
-        this.props.moveToNextState(product);
+    handleClick = (productid) => {
+        this.props.moveToNextState(productid);
     }
 
     displayProductDetails = (product) => {
@@ -53,7 +53,7 @@ class ProductStateDetails extends PureComponent {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" size="small" onClick={this.handleClick.bind(this, product)} >Move to next</Button>
+        <Button variant="contained" size="small" onClick={this.handleClick.bind(this, product.productid)} >Move to next</Button>
       </CardActions>
         </Card>
             </li>

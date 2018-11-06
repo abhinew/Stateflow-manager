@@ -17,6 +17,7 @@ export const addState = state => {
 
 
 export const changeStateOrder = state => {
+    console.log(state)
     return {
     type: CHANGE_STATE_ORDER,
     payload: state
